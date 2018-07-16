@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: mike
+  email: mike@yahoo.com
+  encrypted_password: '123oxf'
+
+two:
+  name: jamie
+  email: jamie@gmail.com
+  encrypted_password: '45flon'
+
