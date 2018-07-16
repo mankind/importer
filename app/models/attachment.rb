@@ -12,13 +12,14 @@ class Attachment < ApplicationRecord
     csv_name = file.original_filename
     Book.transaction do
       attachment = Current.user.attachments.build(csv_file: file, original_csv_filename: csv_name)
-       url = attachment.csv_file.url
+
       CSV.foreach(file.path, headers: true) do |row|
         merged_params = row.to_hash.merge(csv_name: csv_name)
         Current.user.books.create! merged_params
       end
 
       attachment.save
+      url = attachment.csv_file.url
       CsvNotificationJob.perform_later(url)
     end
 
