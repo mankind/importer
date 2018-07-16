@@ -5,5 +5,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   
   validates :name, presence: true, uniqueness: true
+  
+  has_many :books, dependent: :destroy
+  has_many :attachments, dependent: :destroy
+
+  def page_title
+    unless most_recent_csv_file.nil?
+     @page_title ||= @csv.original_csv_filename
+    end
+  end
+
+  def most_recent_csv_file
+    @csv ||= attachments.last
+  end
 
 end

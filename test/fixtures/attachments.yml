@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  csv_file: <%= File.open(Rails.root.join('public', 'good_book.csv')) %>
+  uuid: MyStr78
+  original_csv_filename: MyStrin
+  user: one
+
+two:
+  csv_file: <%=  File.open(Rails.root.join('public', 'bad_book.csv'))%>
+  uuid: MyString457
+  original_csv_filename: MyString
+  user: two

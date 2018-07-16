@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_16_110755) do
+ActiveRecord::Schema.define(version: 2018_07_16_120036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "csv_file", null: false
+    t.string "uuid", null: false
+    t.string "original_csv_filename"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_attachments_on_user_id"
+    t.index ["uuid"], name: "index_attachments_on_uuid", unique: true
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.date "date"
+    t.string "uuid", null: false
+    t.string "publisher_name"
+    t.string "csv_name", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["csv_name"], name: "index_books_on_csv_name"
+    t.index ["user_id"], name: "index_books_on_user_id"
+    t.index ["uuid"], name: "index_books_on_uuid", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -34,4 +60,6 @@ ActiveRecord::Schema.define(version: 2018_07_16_110755) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attachments", "users"
+  add_foreign_key "books", "users"
 end

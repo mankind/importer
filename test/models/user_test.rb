@@ -5,6 +5,7 @@ class UserTest < ActiveSupport::TestCase
     @first_user = users(:one)
    end
 
+
    test "user should be valid with name, email and password" do
      assert @first_user.valid?
    end
@@ -20,6 +21,7 @@ class UserTest < ActiveSupport::TestCase
      refute @first_user.valid?
      assert_not_nil @first_user.errors[:name]
    end
+
 
 
 end

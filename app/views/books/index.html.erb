@@ -1,0 +1,57 @@
+<% content_for(:title)  {page_title}  %>
+
+<br>
+<%= form_with url: import_attachments_path  do |form|  %>
+  <p><%= form.file_field :file %></p>
+  <%= form.submit %>
+<% end %>
+
+<br>
+
+<table  class="table  table-responsive">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date</th>
+      <th>Publisher Name</th>
+      <th>UUID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @last_upload.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.date %></td>
+        <td><%= book.publisher_name %></td>
+        <td><%= book.uuid %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+ <p class="btn btn-success"> Previously Uploaded CSV files </p>
+  <table  class="table  table-responsive">
+  <thead>
+    <tr>
+      <th>File name</th>
+      <th> UUID name </th>
+      <th> S3 Url </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attachments.each do |attachment| %>
+      <tr>
+        <td><%= attachment.original_csv_filename %></td>
+        <td><%= attachment.uuid %></td>
+        <td><%= image_tag attachment.csv_file_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
