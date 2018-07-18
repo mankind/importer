@@ -21,7 +21,6 @@ class AttachmentsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {send_data @csv, :type => csv_file.content_type, filename: filename, :disposition => 'inline'}
-
     end
   end
   
