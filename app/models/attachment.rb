@@ -22,7 +22,20 @@ class Attachment < ApplicationRecord
       url = attachment.csv_file.url
       CsvNotificationJob.perform_later(url)
     end
+  end
 
+  def csv_text
+    csv_string
+    data = []
+    CSV.parse(@csv, headers: true, :row_sep => :auto) do |row|
+       data << row.to_hash
+    end
+    data
+  end
+
+  def csv_string
+    csv_file ||= self.csv_file
+    @csv ||= open(csv_file.url).read
   end
 
   private

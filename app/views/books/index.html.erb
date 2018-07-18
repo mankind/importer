@@ -1,7 +1,7 @@
 <% content_for(:title)  {page_title}  %>
 
 <br>
-<p class="btn btn-primary"> Please upload your csv file and should be of the format shown below </p>
+<p class="text-success"> Please upload your csv file and should be of the format shown below </p>
 <%= form_with url: import_attachments_path  do |form|  %>
   <p><%= form.file_field :file %></p>
   <%= form.submit %>
@@ -13,7 +13,7 @@
   <p> Recently uploaded CSV file</p>
 
 <% else %>
-   <p> The CSV should take the format below </p>
+   <p class="text-primary"> The CSV should take the format below </p>
 <% end %>
 
 <table  class="table  table-responsive">
@@ -22,7 +22,7 @@
       <th>Title</th>
       <th>Author</th>
       <th>Date</th>
-      <th>Publisher Name</th>
+      <th>Publisher_Name</th>
       <th>UUID</th>
       <th colspan="3"></th>
     </tr>
@@ -45,7 +45,7 @@
 
 <% if @attachments.present? %>
 
- <p class="btn btn-success"> Previously Uploaded CSV files </p>
+ <p class="text-primary"> Previously Uploaded CSV files </p>
   <table  class="table  table-responsive">
   <thead>
     <tr>
@@ -57,7 +57,7 @@
   <tbody>
     <% @attachments.each do |attachment| %>
       <tr>
-        <td><%= link_to "#{attachment.original_csv_filename}", attachment_url(attachment, format: "csv")  %></td>
+        <td><%= link_to "#{attachment.original_csv_filename}", attachment_url(attachment)  %></td>
       </tr>
     <% end %>
   </tbody>

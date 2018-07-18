@@ -1,0 +1,33 @@
+<div>
+  <p class="text-primary"> CSV content as string </p>
+  <p><%= @csv_string %></p>
+</div> 
+
+<p class="text-primary">CSV content in table</p>
+
+<table  class="table  table-responsive">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date</th>
+      <th>Publisher_Name</th>
+      <th>UUID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @data.each do |hash| %>
+      <tr>
+        <% hash.each do |key, value| %>
+        <td><%= value %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "download #{@attachment.original_csv_filename}", attachment_url(@attachment, format: 'csv') %> </p>
+
+<p><%= link_to 'Back', root_url %> </p>
