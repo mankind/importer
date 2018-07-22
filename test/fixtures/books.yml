@@ -6,6 +6,7 @@ one:
   date: 2018-07-16
   uuid: MyStr34
   publisher_name: MySt
+  csv_name: MyString
   user: one
 
 two:
@@ -14,4 +15,5 @@ two:
   date: 2018-07-16
   uuid: MyString198
   publisher_name: MyStri
+  csv_name: MyStr
   user: two

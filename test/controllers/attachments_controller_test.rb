@@ -11,10 +11,11 @@ class AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
     csv_name = file.original_filename
     assert_difference "Attachment.count" do
-      #post import_attachments_url, params: {attachment: {csv_file: file, original_csv_filename: csv_name} }
 
       post import_attachments_url, params: {file: file} 
-      assert_equal 1, @user.books_from_last_csv.size
+      book = @user.books_from_last_csv
+      assert_equal 1, book.size
+      assert_equal 'comic_books.csv', book.first.csv_name
       assert_redirected_to root_path
     end
 
