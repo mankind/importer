@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
+
+  rescue_from ActiveRecord::RecordInvalid do |exception|
+    invalid_record(exception)
+  end
 
   before_action :authenticate_user!
 
@@ -22,8 +25,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
-  def invalid_record
-    redirect_to root_url, notice: "The books UUID can't be blank"
+  def invalid_record(error)
+    redirect_to root_url, notice: "#{error}"
   end
 
 end

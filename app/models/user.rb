@@ -19,4 +19,8 @@ class User < ApplicationRecord
     @csv ||= attachments.last
   end
 
+  def books_from_last_csv
+    books.where(csv_name: page_title)
+  end
+
 end

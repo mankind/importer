@@ -5,8 +5,9 @@ class BooksController < ApplicationController
   def index
     @attachments = Current.user.attachments
     @books = Current.user.books
-    @last_upload = Current.user.books.where(csv_name: Current.user.page_title)
-    
+
+    @last_upload = Current.user.books_from_last_csv
+
     respond_to do |format|
       format.html
       format.js

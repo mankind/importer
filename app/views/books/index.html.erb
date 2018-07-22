@@ -1,7 +1,7 @@
 <% content_for(:title)  {page_title}  %>
 
 <br>
-<p class="text-success"> Please upload your csv file and should be of the format shown below </p>
+<p class="text-success"> Please upload your csv file and the headers should be of the format shown in the table below </p>
 <%= form_with url: import_attachments_path  do |form|  %>
   <p><%= form.file_field :file %></p>
   <%= form.submit %>
@@ -11,9 +11,6 @@
 
 <% if @last_upload.present? %>
   <p> Recently uploaded CSV file</p>
-
-<% else %>
-   <p class="text-primary"> The CSV should take the format below </p>
 <% end %>
 
 <table  class="table  table-responsive">
